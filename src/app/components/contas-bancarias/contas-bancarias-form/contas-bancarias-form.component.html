@@ -1,0 +1,181 @@
+<div class="conta-bancaria">
+    <div class="conta-bancaria__container">
+
+        <h2 class="conta-bancaria__title">{{ titulo }} {{ nomeCliente }}</h2>
+
+        <form class="conta-bancaria__form" [formGroup]="contaForm" (ngSubmit)="onSubmit()">
+                <!-- CONTAS BANCÁRIAS --> 
+                <div formArrayName="contasBancarias">
+                    <fieldset class="conta-bancaria__section conta-bancaria__section--highlight">
+                        <legend class="conta-bancaria__legend">Conta Bancária</legend>
+                
+                        <div *ngFor="let conta of contasBancarias.controls; let i = index" [formGroupName]="i">
+                            <div *ngIf="isSectionOpen[i]; else contentClosedContaBancaria">
+                                <fieldset class="conta-bancaria__section--inner-fieldset">
+                                    <legend class="conta-bancaria__legend">
+                                        Conta {{ i+1 }}
+                                    <span class="conta-bancaria__icon" [ngClass]="{ 'down': isSectionOpen[i], 'up': !isSectionOpen[i] }" (click)="toggleSectionArray(i)">
+                                        &#9660;
+                                    </span>
+                                    </legend>
+                                
+                                    <div class="conta-bancaria__form-group">
+                                        <label class="conta-bancaria__label">Banco</label>
+                                        <select class="conta-bancaria__select conta-bancaria__field-cb" formControlName="banco">
+                                            <option value="">Selecione...</option>
+                                            <option *ngFor="let banco of bancos" [value]="banco.code">
+                                                {{ banco.code }} - {{ banco.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-row">
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="agencia">Agência</label>
+                                            <input id="agencia" type="number" class="conta-bancaria__input conta-bancaria__input-num conta-bancaria__field-num-cb" formControlName="agencia">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="digitoAgencia">Dígito</label>
+                                            <input id="digitoAgencia" type="number" class="conta-bancaria__input conta-bancaria__input-dig" formControlName="digitoAgencia">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="contaCorrente">Conta Corrente</label>
+                                            <input id="contaCorrente" type="number" class="conta-bancaria__input conta-bancaria__input-num" formControlName="contaCorrente">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="digitoContaCorrente">Dígito</label>
+                                            <input id="digitoContaCorrente" type="number" class="conta-bancaria__input conta-bancaria__input-dig" formControlName="digitoContaCorrente">
+                                        </div>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-row">
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="agencia">Código da Conta</label>
+                                            <input id="codigoConta" type="number" class="conta-bancaria__input conta-bancaria__input-num" formControlName="codigoConta">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="identificadorEspecial">Identificador Especial</label>
+                                            <input id="identificadorEspecial" type="text" pattern="[0-9]{25}" class="conta-bancaria__input conta-bancaria__input-num-grd" formControlName="identificadorEspecial">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="operacao">Operação</label>
+                                            <input id="operacao" type="number" class="conta-bancaria__input conta-bancaria__input-num-opr" formControlName="operacao">
+                                        </div>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-row">
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="codigoCedente">Código Cedente</label>
+                                            <input id="codigoCedente" type="number" class="conta-bancaria__input conta-bancaria__input-num conta-bancaria__field-num-cb" formControlName="codigoCedente">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="digitoCodigoCedente">Dígito</label>
+                                            <input id="digitoCodigoCedente" type="number" class="conta-bancaria__input conta-bancaria__input-dig" formControlName="digitoCodigoCedente">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="nossoNumero">Nosso Número</label>
+                                            <input id="nossoNumero" type="number" class="conta-bancaria__input conta-bancaria__input-num" formControlName="nossoNumero">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="carteira">Carteira</label>
+                                            <input id="carteira" type="text" class="conta-bancaria__input conta-bancaria__input-dig" formControlName="carteira">
+                                        </div>
+                                    </div> 
+
+                                    <div class="conta-bancaria__form-row">
+                                        <div class="conta-bancaria__form-group">
+                                          <label class="conta-bancaria__label" for="convenio">Convênio</label>
+                                          <select class="conta-bancaria__select" formControlName="convenio">
+                                            <option value="">Selecione...</option>
+                                            <option *ngFor="let convenio of convenios" [value]="convenio.codigo">{{ convenio.descricao }}</option>
+                                          </select>
+                                        </div>
+                        
+                                        <div class="conta-bancaria__form-group">
+                                          <label class="conta-bancaria__label" for="empregador">Empregador</label>
+                                          <select class="conta-bancaria__select" formControlName="empregador">
+                                            <option value="">Selecione...</option>
+                                            <option *ngFor="let empregador of enumEmpregadores" [value]="empregador">{{ empregador }}</option>
+                                          </select>
+                                        </div>
+                        
+                                        <div class="conta-bancaria__form-group">
+                                          <label class="conta-bancaria__label" for="orgao">Órgão</label>
+                                          <select class="conta-bancaria__select" formControlName="orgao">
+                                            <option value="">Selecione...</option>
+                                            <option *ngFor="let orgao of enumOrgaosPublicos" [value]="orgao">{{ orgao }}</option>
+                                          </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-row">
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="localPagamento">Local de Pagamento</label>
+                                            <input id="localPagamento" type="text" class="conta-bancaria__input conta-bancaria__field-cb" formControlName="localPagamento">
+                                        </div>
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="fundo">Fundo</label>
+                                            <select class="conta-bancaria__select" formControlName="fundo">
+                                              <option value="">Selecione...</option>
+                                              <option *ngFor="let orgao of enumOrgaosPublicos" [value]="orgao">{{ orgao }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-group">
+                                        <label class="conta-bancaria__label" for="mensagens">Mensagens</label>
+                                        <textarea id="mensagens" class="conta-bancaria__textarea conta-bancaria__field-cb" formControlName="mensagens"></textarea>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-row">
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="contaCobranca">
+                                                Conta cobrança?
+                                                <input id="contaCobranca" type="checkbox" class="conta-bancaria__checkbox" formControlName="contaCobranca">
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-row">
+                                        <div class="conta-bancaria__form-group">
+                                            <label class="conta-bancaria__label" for="protestar">
+                                                Protestar?
+                                                <input id="protestar" type="checkbox" class="conta-bancaria__checkbox" formControlName="protestar">
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="conta-bancaria__form-group">
+                                        <label class="conta-bancaria__label" for="diasParaProtesto">Dias para Protesto</label>
+                                        <input id="diasParaProtesto" type="number" class="conta-bancaria__input conta-bancaria__input-num conta-bancaria__field-num-cb-prot" formControlName="diasParaProtesto">
+                                    </div>
+
+                                    <!-- Botão para remover uma conta -->
+                                    <button class="conta-bancaria__button-rmv" type="button" (click)="removerContaBancaria(i)">Remover Conta</button>
+                                </fieldset>
+                        </div>
+
+                        <ng-template #contentClosedContaBancaria>
+                            <fieldset class="conta-bancaria__section--inner-fieldset">
+                                <legend class="conta-bancaria__legend">
+                                    Conta {{ i+1 }}
+                                    <span class="conta-bancaria__icon" [ngClass]="{ 'down': isSectionOpen[i], 'up': !isSectionOpen[i] }" (click)="toggleSectionArray(i)">
+                                        &#9660;
+                                    </span>
+                                </legend>
+                                <div class="conta-bancaria__section-closed-text">
+                                    Expanda para preencher os Dados Bancários...
+                                </div>
+                            </fieldset>
+                        </ng-template>
+                    </div>
+                    <span><br><br></span>
+                    <!-- Botão para adicionar uma nova conta -->
+                    <button class="conta-bancaria__button-add" type="button" (click)="addContaBancaria()">Adicionar Conta</button>
+                </fieldset>
+            </div>
+
+            <button type="submit" class="conta-bancaria__button">Salvar</button>
+    </form> <!-- Fechando a tag do formulário aqui -->
+    </div>
+</div>

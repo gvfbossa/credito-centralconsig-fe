@@ -1,0 +1,10 @@
+<div class="convenios__search">
+    <input
+      id="searchQuery"
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Buscar convênio por descrição"
+      class="convenios__search-input"
+    />
+    <mat-icon (click)="onSearch()" class="convenios__search-icon">search</mat-icon>
+</div>

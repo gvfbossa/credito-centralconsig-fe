@@ -1,0 +1,10 @@
+<div class="clientes__search">
+    <input
+      id="searchQuery"
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Buscar cliente por nome"
+      class="clientes__search-input"
+    />
+    <mat-icon (click)="onSearch()" class="clientes__search-icon">search</mat-icon>
+</div>

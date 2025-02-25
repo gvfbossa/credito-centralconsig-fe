@@ -1,0 +1,27 @@
+.convenios__search {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.convenios__search-input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    min-width: 25rem;
+}
+
+.convenios__search-icon {
+    font-size: 2rem;
+    color: #007bff;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.convenios__search-icon:hover {
+    color: #0056b3;
+}

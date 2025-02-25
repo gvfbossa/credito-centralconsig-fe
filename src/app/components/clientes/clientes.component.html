@@ -1,0 +1,13 @@
+<div class="clientes__title-container">
+    <h1 class="clientes__title">CLIENTES</h1>
+</div>
+
+<div class="clientes__actions">
+    <a routerLink="/clientes/cadastro/novo" class="clientes__create">
+        Novo Cliente
+        <mat-icon>add</mat-icon>
+    </a>
+    <app-clientes-search (searchEvent)="onSearch($event)"></app-clientes-search>
+</div> 
+
+<app-clientes-list [clientes]="clientesFiltrados" [tipoAcoes]="'clientes'"></app-clientes-list>

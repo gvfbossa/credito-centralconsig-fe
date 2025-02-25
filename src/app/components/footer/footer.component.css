@@ -1,0 +1,42 @@
+.footer {
+    position: fixed;  /* Fixar o footer na parte inferior */
+    bottom: 0;
+    display: flex;
+    background-color: white;
+    width: 100%;
+    font-size: 1rem;
+    color: #012448;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.4);
+}
+
+.footer__container {
+    display: flex;
+    justify-content: flex-end; /* Alinha o conteúdo da direita */
+    width: 100%;
+    align-items: center;
+    padding: 1rem; /* Se quiser dar um espaço interno ao footer */
+}
+
+.footer__bws {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.footer__bws a {
+    text-decoration: none;
+    color: #0052cc;
+}
+
+@media (max-width: 768px) {
+    .footer__container {
+        display: block;
+        text-align: center; /* Centraliza os itens no mobile */
+        font-size: 1rem;
+    }
+
+    .footer__bws {
+        margin-bottom: 2.5rem;
+    }
+}

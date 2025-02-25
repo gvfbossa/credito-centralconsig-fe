@@ -1,0 +1,246 @@
+/* conta-bancaria */
+.conta-bancaria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+
+    margin-bottom: 3rem;
+  }
+  
+  /* CONTAINER */
+  .conta-bancaria__container {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* TÍTULO */
+  .conta-bancaria__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #012852;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* FORM */
+  .conta-bancaria__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* SEÇÃO */
+  .conta-bancaria__section {
+    background: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border-left: 5px solid #012852;
+  }
+  
+  /* SEÇÃO (VARIAÇÃO LARANJA) */
+  .conta-bancaria__section--highlight {
+    border-left-color: #d17b00;
+  }
+  
+  /* LEGEND */
+  .conta-bancaria__legend {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #012852;
+    margin-bottom: 1rem;
+  }
+  
+  /* FORM-GROUP */
+  .conta-bancaria__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* LABEL */
+  .conta-bancaria__label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #012852;
+  }
+  
+  /* INPUT */
+  .conta-bancaria__input,
+  .conta-bancaria__select,
+  .conta-bancaria__textarea {
+    padding: 0.6rem;
+    border: 1px solid #adacac;
+    border-radius: 6px;
+    font-size: 1rem;
+    gap: 1rem;
+  }
+  
+  .conta-bancaria__textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* ERROR MESSAGE */
+  .conta-bancaria__error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+  }
+  
+  /* BUTTON */
+  .conta-bancaria__button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .conta-bancaria__button:hover {
+    background-color: #0056b3;
+  }
+  
+  .conta-bancaria__button-rmv {
+    background-color: #f44336;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .conta-bancaria__button-rmv:hover {
+    background-color: #c62828;
+  }
+  
+  .conta-bancaria__button-add {
+    background-color: #d17b00;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+    text-align: center;
+    width: 101%;
+  }
+  
+  .conta-bancaria__button-add:hover {
+    background-color: #885001;
+  }
+  
+  /* RESPONSIVO */
+  @media (max-width: 768px) {
+    .conta-bancaria__container {
+      padding: 2rem;
+    }
+  }
+  
+  .conta-bancaria__form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .conta-bancaria__form-group {
+    flex: 1;
+  }
+  
+  .conta-bancaria__input,
+  .conta-bancaria__select {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+  
+  .conta-bancaria__input-num {
+    max-width: 12rem;
+  }
+  
+  .conta-bancaria__input-num-grd {
+    max-width: 16rem;
+    min-width: 16rem;
+    margin-left: 0rem;
+  }
+
+  .conta-bancaria__input-num-opr {
+    max-width: 10.8rem;
+  }
+  
+  .conta-bancaria__input-dig {
+    max-width: 7rem;
+  }
+  
+  .conta-bancaria__input-dig-align {
+    margin-left: -1.4rem;
+  }
+  
+  .conta-bancaria__icon {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .conta-bancaria__icon.up {
+    transform: rotate(180deg);
+  }
+  
+  .conta-bancaria__icon.down {
+    transform: rotate(0deg);
+  }
+  
+  .conta-bancaria__section-closed-text {
+    color: gray;
+  }
+  
+  .conta-bancaria__section--inner-fieldset {
+    max-width: 600px !important;
+    min-width: 97%;
+    margin-bottom: 3rem;
+  }
+  
+  .conta-bancaria__field-num-cb {
+    max-width: 10.5rem;
+  }
+  
+  .conta-bancaria__field-num-cb-prot {
+    max-width: 7.3rem;
+  }
+  
+  /* BUTTON */
+  .conta-bancaria__button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .conta-bancaria__button:hover {
+    background-color: #0056b3;
+  }

@@ -1,0 +1,27 @@
+.clientes__search {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .clientes__search-input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    min-width: 25rem;
+  }
+  
+  .clientes__search-icon {
+    font-size: 2rem;
+    color: #007bff;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  
+  .clientes__search-icon:hover {
+    color: #0056b3;
+  }

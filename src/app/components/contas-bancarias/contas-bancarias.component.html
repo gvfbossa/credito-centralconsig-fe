@@ -1,0 +1,9 @@
+<div class="contas__title-container">
+    <h1 class="contas__title">CONTAS BANCÁRIAS</h1>
+</div>
+
+<div class="contas__actions">
+    <app-clientes-search (searchEvent)="onSearch($event)"></app-clientes-search>
+</div>
+
+<app-clientes-list [clientes]="clientesFiltrados" [tipoAcoes]="'contas'"></app-clientes-list>

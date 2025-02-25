@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    position: sticky;  /* Tornar o header sticky */
+    top: 0;  /* Fica fixo no topo da tela */
+    z-index: 1000;  /* Garante que o header fique acima de outros elementos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header__logo img {
+    width: 100px;
+  }
+  
+  .header__nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 5rem;
+  }
+  
+  .header__nav li {
+    margin: 0 10px;
+  }
+  
+  .header__nav a {
+    color: #012852; 
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .header__nav li a {
+    font-size: 1.3rem;
+  }
+  
+  .header__nav a:hover {
+    color: #0056b3;
+  }
+
+  .header__user {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+
+  .header__user-name {
+    color: #012852;
+    font-size: 1.2rem;
+    height: 100%;
+  }
+  
+  .header__user-button {
+    margin: 0;
+    margin-left: 2rem;
+    padding: 0;
+    height: auto;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header__user-button mat-icon {
+    color: #012852;
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    line-height: 0;
+    display: inline-flex;
+    align-items: center; 
+  }
+
+  .header__user-button-text {
+    font-size: 0.9rem;
+    color: #012852;
+    margin-top: -0.2rem;
+  }

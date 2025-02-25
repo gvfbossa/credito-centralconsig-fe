@@ -1,0 +1,62 @@
+.contas__title-container {
+    display: flex;  /* Aplica o flexbox */
+    justify-content: center;  /* Centraliza horizontalmente */
+    align-items: center;  /* Centraliza verticalmente */
+    width: 100%;  /* Garante que o container ocupe toda a largura disponível */
+  }
+  
+  .contas__title {
+    position: relative;  /* Para permitir o posicionamento da borda */
+    text-align: center;  /* Centraliza o texto */
+    font-size: 2rem;  /* Tamanho da fonte */
+    font-weight: bold;  /* Deixa o texto em negrito */
+    color: #d17b00;  /* Cor do texto */
+    margin-bottom: 2rem;  /* Espaçamento abaixo do título */
+    margin-top: 3rem;
+    padding-left: 1rem;
+  }
+  
+  .contas__title::before {
+    content: '';  /* Cria o pseudo-elemento */
+    position: absolute;
+    left: 0;  /* A borda vai começar no início do título */
+    top: 50%;  /* Centraliza verticalmente a borda */
+    transform: translateY(-50%);  /* Ajuste fino para centralizar */
+    width: 0.4rem;  /* Largura da borda */
+    height: 100%;  /* A borda vai ter a altura total do título */
+    background-color: #012852;  /* Cor da borda */
+    border-radius: 3px;
+  }
+
+  .contas__actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center; /* Centraliza os elementos no meio da tela */
+    align-items: center;
+    gap: 1rem; /* Espaço entre a busca e o botão */
+    width: 100%;
+  }
+  
+  .contas__create {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1.6rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .contas__create mat-icon {
+    margin-left: 0.6rem;
+    font-size: 1.6rem;
+  }
+  
+  .contas__create:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  

@@ -1,0 +1,22 @@
+<header class="header">
+    <div class="header__logo">
+        <img src="assets/images/centralconsig-logo.png" alt="Logo" />
+    </div>
+    <nav class="header__nav">
+        <ul>
+            <li><a routerLink="/home">INÍCIO</a></li>
+            <li><a routerLink="/clientes">CLIENTES</a></li>
+            <li><a routerLink="/contas-bancarias">CONTAS BANCÁRIAS</a></li>
+            <li><a routerLink="/convenios">CONVÊNIOS</a></li>
+        </ul>
+    </nav>
+    <div class="header__user">
+        <span class="header__user-name">Olá, {{ usuario }}</span>
+        <a class="header__user-button" routerLink="login">
+            <mat-icon>power_settings_new</mat-icon>
+            <span class="header__user-button-text">Sair</span>
+        </a>
+        
+    </div>
+</header>
+  

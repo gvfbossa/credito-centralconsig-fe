@@ -1,0 +1,109 @@
+<div class="convenio">
+    <div class="convenio__container">
+      <h2 class="convenio__title">{{ titulo }}</h2>
+  
+      <form class="convenio__form" [formGroup]="convenioForm" (ngSubmit)="onSubmit()">
+  
+        <!-- DADOS DO CONVÊNIO -->
+        <fieldset class="convenio__section">
+          <legend class="convenio__legend"  (click)="toggleSection('dadosConvenio')">
+            Dados do Convênio
+          <span class="convenio__icon" [ngClass]="{ 'down': isSectionOpen['dadosConvenio'], 'up': !isSectionOpen['dadosConvenio'] }">
+            &#9660;
+          </span>
+        </legend>
+
+        <div *ngIf="isSectionOpen['dadosConvenio']; else closedDadosConvenio">
+        <div class="convenio__form-row">
+            <div class="convenio__form-group">
+              <label class="convenio__label">Código</label>
+              <input class="convenio__input" formControlName="codigo" type="number" />
+            </div>
+
+            <div class="convenio__form-group">
+                <label class="convenio__label">Fechamento</label>
+                <input class="convenio__input" formControlName="fechamento" type="number" />
+              </div>
+    
+              <div class="convenio__form-group">
+                <label class="convenio__label">Vencimento</label>
+                <input class="convenio__input" formControlName="vencimento" type="number" />
+              </div>
+        </div>
+
+        <div class="convenio__form-row">
+            <div class="convenio__form-group">
+              <label class="convenio__label">Descrição</label>
+              <input class="convenio__input" formControlName="descricao" type="text" />
+            </div>
+  
+            <div class="convenio__form-group">
+              <label class="convenio__label">Descrição do Empregador</label>
+              <input class="convenio__input" formControlName="descricaoEmpregador" type="text" />
+            </div>
+  
+            <div class="convenio__form-group">
+              <label class="convenio__label">Descrição do Órgão</label>
+              <input class="convenio__input" formControlName="descricaoOrgao" type="text" />
+            </div>
+          </div>
+        </div>
+          <ng-template #closedDadosConvenio><span class="convenio__section-closed-text">Expanda para preencher os Dados do Convênio...</span></ng-template>
+        </fieldset>
+
+
+
+
+
+        <!-- DATAS DE FECHAMENTO -->
+        <div formArrayName="dataFechamentoConvenios">
+          <div *ngFor="let conjunto of dataFechamentoConvenios.controls; let i = index" [formGroupName]="i">
+            
+            <!-- Fieldset para cada conjunto -->
+            <fieldset class="convenio__section convenio__section--highlight">
+              <legend class="convenio__legend" (click)="toggleSection('datasFechamento' + i)">
+                Datas de Fechamento {{ i + 1 }}
+                <span class="convenio__icon" [ngClass]="{ 'down': isSectionOpen['datasFechamento' + i], 'up': !isSectionOpen['datasFechamento' + i] }">
+                  &#9660;
+                </span>
+              </legend>
+        
+              <div *ngIf="isSectionOpen['datasFechamento' + i]; else closedDataFechamento">
+                <div formArrayName="meses">
+                  <div *ngFor="let grupo of getMesesEmGrupos(conjunto); let j = index" class="convenio__meses-row">
+                    <div *ngFor="let mesControl of grupo; let k = index" [formGroup]="mesControl" class="convenio__mes">
+                      <label class="convenio__label convenio__label-dt-mes">{{ getMes((j * 3) + k) }}</label>
+                      <div class="convenio__form-row-dt">
+                        <div class="convenio__form-group-dt">
+                          <label class="convenio__label-dt">Data</label> 
+                          <input class="convenio__input-data-dt" formControlName="data" type="date" />
+                        </div>
+                        <div class="convenio__form-group-dt">
+                          <label class="convenio__label-dt">Dia de Envio</label>
+                          <input class="convenio__input-dt" formControlName="diaEnvio" type="number" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <!-- Botão para remover um conjunto de datas -->
+                <button type="button" class="convenio__button-rmv" (click)="removerConjuntoDatas(i)">Remover Datas</button>
+              </div>
+            </fieldset>            
+        
+          </div>
+          <button type="button" (click)="addConjuntoDatas()" class="convenio__button-add">
+            Adicionar Conjunto de Datas
+          </button>
+        </div>
+        
+        <ng-template #closedDataFechamento>
+          <span class="convenio__section-closed-text">Expanda para preencher as Datas de Fechamento...</span>
+        </ng-template>
+             
+  
+        <button type="submit" class="convenio__button">Salvar</button> <!-- [disabled]="!convenioForm.valid" -->
+      </form>
+    </div>
+  </div>
+  

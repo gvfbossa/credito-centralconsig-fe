@@ -1,0 +1,131 @@
+.clientes__list {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clientes__table-container {
+    max-height: 25rem; /* Define a altura máxima para a tabela */
+    overflow-y: auto; /* Adiciona a rolagem vertical */
+    border: 1px solid #ddd; /* Mantém a estética da tabela */
+    border-radius: 5px; /* Borda arredondada para um visual mais bonito */
+    position: relative; /* Garante que o sticky funcione corretamente */
+    width: 100%;
+}
+
+.clientes__table {
+    width: 100%;
+    border-spacing: 0;
+    background-color: #fff;  /* Garante que o fundo da tabela seja branco */
+    border-collapse: collapse;  /* Colapsa as bordas para um estilo mais limpo */
+    table-layout: auto; /* Ajusta a largura das colunas automaticamente */
+    border-collapse: separate; 
+}
+
+.clientes__table th, 
+.clientes__table td {
+    border: 1px solid #ddd;  /* Adiciona bordas finas entre as células */
+    padding: 8px;  /* Adiciona um espaçamento dentro das células */
+    text-align: left;  /* Alinha o texto à esquerda */
+    white-space: nowrap;  /* Impede quebra de linha desnecessária */
+}
+
+/* Definição manual da largura das colunas */
+.clientes__table th:nth-child(1),
+.clientes__table td:nth-child(1) {
+    width: 25%;
+}
+
+.clientes__table th:nth-child(2),
+.clientes__table td:nth-child(2) {
+    width: 50%;
+}
+
+.clientes__table th:nth-child(3),
+.clientes__table td:nth-child(3) {
+    width: 25%;
+}
+
+.clientes__table th {
+    position: sticky;
+    top: 0;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    z-index: 10; /* Aumenta a prioridade do cabeçalho */
+}
+
+mat-icon {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.clientes__table td {
+    font-size: 1.2rem;
+}
+
+.clientes__table tr:nth-child(even) {
+    background-color: #f2f2f2;  /* Cor de fundo das linhas pares */
+}
+
+.clientes__table tr:nth-child(odd) {
+    background-color: #ffffff;  /* Cor de fundo das linhas ímpares */
+}
+
+/* Centralizando os botões na coluna de Ações */
+.clientes__table td.mat-cell:last-child {
+    display: flex;  /* Faz a célula usar flexbox */
+    justify-content: center;  /* Centraliza os botões horizontalmente */
+    align-items: center;  /* Centraliza os botões verticalmente */
+    gap: 0.5rem;  /* Espaço entre os botões */
+}
+
+/* Estilos para o container de Ações */
+.clientes__acoes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    border-bottom: none !important;
+    border-left: none !important;
+}
+
+/* Estilos para os botões */
+.clientes__edit-button,
+.clientes__delete-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.clientes__edit-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.clientes__delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.clientes__edit-button:hover {
+    background-color: #0056b3;
+}
+
+.clientes__delete-button:hover {
+    background-color: #c62828;
+}
+
+.clientes__edit-button-single {
+    width: 50%;
+    display: flex;
+    margin: 0 auto;
+}

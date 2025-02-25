@@ -1,0 +1,13 @@
+<div class="convenios__title-container">
+    <h1 class="convenios__title">CONVÊNIOS</h1>
+</div>
+
+<div class="convenios__actions">
+    <a routerLink="/convenios/cadastro/novo" class="convenios__create">
+        Novo Convênio
+        <mat-icon>add</mat-icon>
+    </a>
+    <app-convenios-search (searchEvent)="onSearch($event)"></app-convenios-search>
+</div> 
+
+<app-convenios-list [convenios]="conveniosFiltrados"></app-convenios-list>

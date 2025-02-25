@@ -1,0 +1,61 @@
+.convenios__title-container {
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    width: 100%;  
+}
+  
+.convenios__title {
+    position: relative;  
+    text-align: center;  
+    font-size: 2rem;  
+    font-weight: bold;  
+    color: #d17b00;  
+    margin-bottom: 2rem;  
+    margin-top: 3rem;
+    padding-left: 1rem;
+}
+  
+.convenios__title::before {
+    content: '';  
+    position: absolute;
+    left: 0;  
+    top: 50%;  
+    transform: translateY(-50%);  
+    width: 0.4rem;  
+    height: 100%;  
+    background-color: #012852;  
+    border-radius: 3px;
+}
+
+.convenios__actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 1rem; 
+    width: 100%;
+}
+  
+.convenios__create {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1.6rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+  
+.convenios__create mat-icon {
+    margin-left: 0.6rem;
+    font-size: 1.6rem;
+}
+  
+.convenios__create:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}

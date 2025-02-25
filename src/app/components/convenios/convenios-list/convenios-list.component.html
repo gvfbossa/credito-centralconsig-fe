@@ -1,0 +1,56 @@
+<div class="convenios__list">
+    <div class="convenios__table-container">
+      <table mat-table [dataSource]="dataSource" class="convenios__table" #tabela>
+        <!-- CNPJ Column -->
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef> Código </th>
+          <td mat-cell *matCellDef="let convenio"> {{ convenio.codigo }} </td>
+        </ng-container>
+    
+        <!-- Nome Column -->
+        <ng-container matColumnDef="descricao">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('descricao')">
+            Descrição
+            <mat-icon>
+              {{ sortDirection === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+            </mat-icon>          
+          </th>
+          <td mat-cell *matCellDef="let convenio"> {{ convenio.descricao }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descricaoEmpregador">
+          <th mat-header-cell *matHeaderCellDef> Descrição Empregador </th>
+          <td mat-cell *matCellDef="let convenio"> {{ convenio.descricaoEmpregador }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descricaoOrgao">
+          <th mat-header-cell *matHeaderCellDef> Descrição Órgão </th>
+          <td mat-cell *matCellDef="let convenio"> {{ convenio.descricaoOrgao }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechamento">
+          <th mat-header-cell *matHeaderCellDef> Fechamento </th>
+          <td mat-cell *matCellDef="let convenio"> {{ convenio.fechamento }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vencimento">
+          <th mat-header-cell *matHeaderCellDef> Vencimento </th>
+          <td mat-cell *matCellDef="let convenio"> {{ convenio.vencimento }} </td>
+        </ng-container>
+    
+        <!-- Ações Column -->
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let convenio">
+            <div class="convenios__acoes-container">
+              <button (click)="onEdit(convenio.codigo)" class="convenios__edit-button">Editar</button>
+              <button (click)="onDelete(convenio.codigo)" class="convenios__delete-button">Excluir</button>
+            </div>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>

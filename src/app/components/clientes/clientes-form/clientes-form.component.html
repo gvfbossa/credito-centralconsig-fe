@@ -1,0 +1,659 @@
+<div class="cliente">
+    <div class="cliente__container">
+      <h2 class="cliente__title">{{ titulo }}</h2>
+  
+      <form class="cliente__form" [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+        
+        <!-- DADOS PESSOAIS --> 
+        <fieldset class="cliente__section">
+          <legend class="cliente__legend" (click)="toggleSection('dadosPessoais')">
+            Dados Pessoais
+            <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['dadosPessoais'], 'up': !isSectionOpen['dadosPessoais'] }">
+              &#9660;
+            </span>
+          </legend>
+
+          <div *ngIf="isSectionOpen['dadosPessoais']; else contentClosed">
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label">Nome Completo</label>
+                <input class="cliente__input" formControlName="nomeCompleto" type="text" />
+              </div>
+
+              <!-- CPF -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">CPF</label>
+                <input class="cliente__input" formControlName="cpf" type="text" />
+              </div>
+            </div>
+            
+            <div class="cliente__form-row">
+              <!-- Data de Nascimento -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Data de Nascimento</label>
+                <input class="cliente__input" formControlName="dataNascimento" type="date" />
+              </div>
+
+              <!-- Sexo -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Sexo</label>
+                <select class="cliente__select" formControlName="sexo">
+                  <option value="">Selecione...</option>
+                  <option *ngFor="let sexo of enumSexo" [value]="sexo">{{ sexo }}</option>
+                </select>
+              </div>
+
+              <div class="cliente__form-group">
+                <label class="cliente__label">EstadoCivil</label>
+                <select class="cliente__select" formControlName="estadoCivil">
+                  <option value="">Selecione...</option>
+                  <option *ngFor="let estadoCivil of enumEstadosCivis" [value]="estadoCivil">{{ estadoCivil }}</option>
+                </select>
+              </div>
+
+              <div class="cliente__form-group">
+                <label class="cliente__label">Escolaridade</label>
+                <select class="cliente__select cliente__select-opt" formControlName="escolaridade">
+                  <option value="">Selecione...</option>
+                  <option *ngFor="let escolaridade of enumEscolaridade" [value]="escolaridade.value">{{ escolaridade.label }}</option>
+                </select>
+              </div>
+            </div>
+          
+            <div formGroupName="rg"> <!-- TODO - fazer isso pra todos os biruleibes do form -->
+            <div class="cliente__form-row">
+              <!-- RG Número -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Número do RG</label>
+                <input class="cliente__input" formControlName="numero" type="text" />
+              </div>
+          
+              <!-- RG Órgão Expedidor -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Órgão Expedidor do RG</label>
+                <select class="cliente__select" formControlName="orgaoExpeditor">
+                  <option value="">Selecione...</option>
+                  <option *ngFor="let orgaoExpeditor of enumOrgaosExpeditores" [value]="orgaoExpeditor">{{ orgaoExpeditor }}</option>
+                </select>
+              </div>
+            </div>
+          
+            <div class="cliente__form-row">
+              <!-- RG Estado Emissor -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Estado Emissor do RG</label>
+                <select class="cliente__select" formControlName="estadoEmissor">
+                  <option value="">Selecione...</option>
+                  <option *ngFor="let estado of enumEstados" [value]="estado">{{ estado }}</option>
+                </select>
+              </div>
+          
+              <!-- RG Data de Expedição -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Data de Expedição do RG</label>
+                <input class="cliente__input" formControlName="dataExpedicao" type="date" />
+              </div>
+            </div>
+          </div>
+
+            <div class="cliente__form-row">
+              <!-- Nome da Mãe -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Nome da Mãe</label>
+                <input class="cliente__input" formControlName="nomeMae" type="text" />
+              </div>
+          
+              <!-- Nome do Pai -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Nome do Pai</label>
+                <input class="cliente__input" formControlName="nomePai" type="text" />
+              </div>
+            </div>
+          
+            <div class="cliente__form-row">
+              <!-- Cidade de Naturalidade -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Cidade de Naturalidade</label>
+                <input class="cliente__input" formControlName="naturalidadeCidade" type="text" />
+              </div>
+          
+              <!-- Estado de Naturalidade -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Estado de Naturalidade</label>
+                <select class="cliente__select" formControlName="naturalidadeEstado">
+                  <option value="">Selecione...</option>
+                  <option *ngFor="let estado of enumEstados" [value]="estado">{{ estado }}</option>
+                </select>
+              </div>              
+          
+              <!-- Nacionalidade -->
+              <div class="cliente__form-group">
+                <label class="cliente__label">Nacionalidade</label>
+                <input class="cliente__input" formControlName="nacionalidade" type="text" />
+              </div>
+            </div>
+          </div>
+          <ng-template #contentClosed><span class="cliente__section-closed-text">Expanda para preencher os Dados Pessoais...</span></ng-template>
+        </fieldset>
+        
+
+
+
+
+        <!-- CONTATOS -->
+        <fieldset class="cliente__section cliente__section--highlight">
+          <legend class="cliente__legend" (click)="toggleSection('contato')">
+            Contato
+            <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['contato'], 'up': !isSectionOpen['contato'] }">
+              &#9660;
+            </span>
+          </legend>
+
+          <div *ngIf="isSectionOpen['contato']; else contentClosedContato">
+            <fieldset class="cliente__contato-fs">
+              <legend class="cliente__legend" (click)="toggleSection('contato')">Contatos Pessoais</legend>
+
+              <div class="cliente__form-row">
+                <div class="cliente__form-group">
+                  <label class="cliente__label">Telefone</label>
+                  <input class="cliente__input" formControlName="telefone" type="text" />
+                </div>
+
+                <div class="cliente__form-group">
+                  <label class="cliente__label">Celular</label>
+                  <input class="cliente__input" formControlName="celular" type="text" />
+                </div>
+              </div>
+
+              <div class="cliente__form-group">
+                <label class="cliente__label">Email</label>
+                <input class="cliente__input" formControlName="email" type="text" />
+              </div>
+            </fieldset>
+            
+            <div formArrayName="contatos">
+              <div *ngFor="let contato of contatosFormArray.controls; let i = index" [formGroupName]="i">
+                <fieldset class="cliente__contato-fs-margin">
+                  <legend class="cliente__legend">Contato Adicional</legend>
+                  <div class="cliente__form-group">
+                    <label class="cliente__label">Nome</label>
+                    <input class="cliente__input" formControlName="nome" type="text" />
+                  </div>
+
+                  <div class="cliente__form-row">
+                    <div class="cliente__form-group">
+                      <label class="cliente__label">Telefone</label>
+                      <input class="cliente__input" formControlName="telefone" type="text" />
+                    </div>
+
+                    <div class="cliente__form-group">
+                      <label class="cliente__label">Tipo de Contato</label>
+                      <select class="cliente__select" formControlName="tipoContato">
+                        <option value="">Selecione...</option>
+                        <option *ngFor="let tipoContato of enumTiposContato" [value]="tipoContato">{{ tipoContato }}</option>
+                      </select>
+                    </div>
+                  </div>
+              </fieldset>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #contentClosedContato>
+            <span class="cliente__section-closed-text">Expanda para preencher os Dados de Contato...</span>
+          </ng-template>
+        </fieldset>
+
+
+
+
+        
+        <!-- ENDEREÇO -->
+        <fieldset class="cliente__section">
+          <legend class="cliente__legend" (click)="toggleSection('endereco')">
+            Endereço
+            <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['endereco'], 'up': !isSectionOpen['endereco'] }">
+              &#9660;
+            </span>
+          </legend>
+        
+          <div *ngIf="isSectionOpen['endereco']; else contentClosedEndereco">
+            <div formArrayName="enderecos">
+            <div *ngFor="let endereco of enderecosFormArray.controls; let i = index" [formGroupName]="i">
+            <div class="cliente__form-group">
+              <label class="cliente__label">CEP</label>
+              <input class="cliente__input" formControlName="cep" type="text" />
+            </div>
+        
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label">Logradouro</label>
+                <input class="cliente__input" formControlName="logradouro" type="text" />
+              </div>
+        
+              <div class="cliente__form-group">
+                <label class="cliente__label">Número</label>
+                <input class="cliente__input" formControlName="numero" type="text" />
+              </div>
+            </div>
+        
+            <div class="cliente__form-group">
+              <label class="cliente__label">Complemento</label>
+              <input class="cliente__input" formControlName="complemento" type="text" />
+            </div>
+        
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label">Bairro</label>
+                <input class="cliente__input" formControlName="bairro" type="text" />
+              </div>
+        
+              <div class="cliente__form-group">
+                <label class="cliente__label">Cidade</label>
+                <input class="cliente__input" formControlName="cidade" type="text" />
+              </div>
+        
+              <div class="cliente__form-group">
+                <label class="cliente__label">Estado</label>
+                <select class="cliente__select" formControlName="estado">
+                  <option value="">Selecione...</option>
+                    <option *ngFor="let estado of enumEstados" [value]="estado">{{ estado }}</option>
+                </select>
+              </div>
+            </div>
+        
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label">Tipo de Residência</label>
+                <select class="cliente__select" formControlName="tipoResidencia">
+                  <option value="">Selecione...</option>
+                    <option *ngFor="let tipoResidencia of enumTiposResidencia" [value]="tipoResidencia">{{ tipoResidencia }}</option>
+                </select>
+              </div>
+          
+              <div class="cliente__form-group">
+                <label class="cliente__label">Tempo de Residência</label>
+                <input class="cliente__input" formControlName="tempoResidencia" type="text" />
+              </div>
+            </div>
+        
+            <div class="cliente__form-group cliente__form-group--checkbox">
+              <label class="cliente__label">
+                Endereço de cobrança?
+                <input type="checkbox" formControlName="cobranca" />
+              </label>
+            </div>
+          </div>
+          </div>
+        </div>
+        
+          <ng-template #contentClosedEndereco>
+            <span class="cliente__section-closed-text">Expanda para preencher os Dados de Endereço...</span>
+          </ng-template>
+        </fieldset>
+
+
+
+
+
+        <!-- DADOS PROFISSIONAIS -->
+        <fieldset class="cliente__section cliente__section--highlight">
+          <legend class="cliente__legend" (click)="toggleSection('dadosProfissionais')">
+            Dados Profissionais
+            <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['dadosProfissionais'], 'up': !isSectionOpen['dadosProfissionais'] }">
+              &#9660;
+            </span>
+          </legend>
+        
+          <div *ngIf="isSectionOpen['dadosProfissionais']; else contentClosedDadosProfissionais">
+            <div formArrayName="dadosProfissionais">
+            <div *ngFor="let dadoProfissional of dadosProfissionaisFormArray.controls; let i = index" [formGroupName]="i">
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label" for="empresa">Empresa</label>
+                <input id="empresa" type="text" class="cliente__input" formControlName="empresa">
+              </div>
+            </div>
+        
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label" for="profissao">Profissão</label>
+                <input id="profissao" type="text" class="cliente__input" formControlName="profissao">
+              </div>
+            </div>
+
+            <div class="cliente__form-group">
+              <label class="cliente__label" for="ocupacao">Ocupação</label>
+              <input id="ocupacao" type="text" class="cliente__input" formControlName="ocupacao">
+            </div>
+        
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label" for="salario">Salário</label>
+                <input id="salario" type="number" class="cliente__input" formControlName="salario">
+              </div>
+
+              <div class="cliente__form-group">
+                <label class="cliente__label"for="outrasRendas">Outras Rendas</label>
+                <input id="outrasRendas" type="number" class="cliente__input" formControlName="outrasRendas">
+              </div>
+            </div>
+
+            <div class="cliente__form-group">
+              <label class="cliente__label" for="outrasRendasDetalhes">Detalhes das Outras Rendas</label>
+              <input id="outrasRendasDetalhes" type="text" class="cliente__input" formControlName="outrasRendasDetalhes">
+            </div>
+            
+            <div class="cliente__form-row">
+              <div class="cliente__form-group">
+                <label class="cliente__label" for="telefoneComercial">Telefone Comercial</label>
+                <input id="telefoneComercial" type="text" class="cliente__input" formControlName="telefoneComercial">
+              </div>
+          
+              <div class="cliente__form-group">
+                <label class="cliente__label" for="dataAdmissao">Data de Admissão</label>
+                <input id="dataAdmissao" type="date" class="cliente__input" formControlName="dataAdmissao">
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+          <ng-template #contentClosedDadosProfissionais>
+            <span class="cliente__section-closed-text">Expanda para preencher os Dados Profissionais...</span>
+          </ng-template>
+        </fieldset>
+
+
+
+
+
+        <!-- REFERÊNCIA -->
+        <fieldset class="cliente__section">
+          <legend class="cliente__legend" (click)="toggleSection('referencia')">
+            Referência
+            <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['referencia'], 'up': !isSectionOpen['referencia'] }">
+              &#9660;
+            </span>
+          </legend>
+        
+          <div *ngIf="isSectionOpen['referencia']; else contentClosedReferencia">
+            <div formArrayName="referencias">
+              <div *ngFor="let referencia of referenciasFormArray.controls; let i = index" [formGroupName]="i">
+
+              <div class="cliente__form-group">
+                <label class="cliente__label">Nome</label>
+                <input class="cliente__input" formControlName="nome" type="text" />
+              </div>
+
+              <div class="cliente__form-group">
+                <label class="cliente__label">Endereço</label>
+                <input class="cliente__input" formControlName="endereco" type="text" />
+              </div>
+
+              <div class="cliente__form-row">
+                <div class="cliente__form-group">
+                  <label class="cliente__label">Telefone</label>
+                  <input class="cliente__input" formControlName="telefone" type="text" />
+                </div>
+
+                <div class="cliente__form-group">
+                  <label class="cliente__label">Tipo de Referência</label>
+                  <select class="cliente__select" formControlName="tipoReferencia">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let tipoReferencia of enumTiposReferencia" [value]="tipoReferencia">{{ tipoReferencia }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <ng-template #contentClosedReferencia>
+            <span class="cliente__section-closed-text">Expanda para preencher a Referência...</span>
+          </ng-template>
+        </fieldset>
+
+
+
+
+
+        <!-- CONTAS BANCÁRIAS -->
+        <div formArrayName="contasBancarias">
+          <fieldset class="cliente__section cliente__section--highlight">
+            <legend class="cliente__legend" (click)="toggleSection('contaBancaria')">
+              Conta Bancária
+              <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['contaBancaria'], 'up': !isSectionOpen['contaBancaria'] }">
+                &#9660;
+              </span>
+            </legend>
+        
+            <div *ngIf="isSectionOpen['contaBancaria']; else contentClosedContaBancaria">
+              <div *ngFor="let conta of contasBancarias.controls; let i = index" [formGroupName]="i">
+
+                <fieldset class="cliente__section--inner-fieldset">
+                  <div class="cliente__form-group">
+                    <label class="cliente__label">Banco</label>
+                    <select class="cliente__select cliente__field-cb" formControlName="banco" (change)="selecionarBanco($event, i)">
+                      <option value="">Selecione...</option>
+                      <option *ngFor="let banco of bancos" [value]="banco.code">
+                        {{ banco.code }} - {{ banco.name }}
+                      </option>
+                    </select>
+                  </div>
+  
+                <div class="cliente__form-row">
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="agencia">Agência</label>
+                    <input id="agencia" type="number" class="cliente__input cliente__input-num cliente__field-num-cb" formControlName="agencia">
+                  </div>
+  
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="digitoAgencia">Dígito</label>
+                    <input id="digitoAgencia" type="number" class="cliente__input cliente__input-dig" formControlName="digitoAgencia">
+                  </div>
+                
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="contaCorrente">Conta Corrente</label>
+                    <input id="contaCorrente" type="number" class="cliente__input cliente__input-num" formControlName="contaCorrente">
+                  </div>
+  
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="digitoContaCorrente">Dígito</label>
+                    <input id="digitoContaCorrente" type="number" class="cliente__input cliente__input-dig" formControlName="digitoContaCorrente">
+                  </div>
+                </div>
+  
+                <div class="cliente__form-row">
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="agencia">Código da Conta</label>
+                    <input id="agencia" type="text" class="cliente__input cliente__input-num" formControlName="codigoConta">
+                  </div>
+
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="identificadorEspecial">Identificador Especial</label>
+                    <input id="identificadorEspecial" type="text" pattern="[0-9]{25}" class="cliente__input cliente__field-cb" formControlName="identificadorEspecial">
+                  </div>
+  
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="operacao">Operação</label>
+                    <input id="operacao" type="number" class="cliente__input cliente__field-cb" formControlName="operacao">
+                  </div>
+                </div>
+  
+                <div class="cliente__form-row">
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="codigoCedente">Código Cedente</label>
+                    <input id="codigoCedente" type="number" class="cliente__input cliente__input-num cliente__field-num-cb" formControlName="codigoCedente">
+                  </div>
+  
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="digitoCodigoCedente">Dígito</label>
+                    <input id="digitoCodigoCedente" type="number" class="cliente__input cliente__input-dig" formControlName="digitoCodigoCedente">
+                  </div>
+  
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="nossoNumero">Nosso Número</label>
+                    <input id="nossoNumero" type="number" class="cliente__input cliente__input-num" formControlName="nossoNumero">
+                  </div>
+  
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="carteira">Carteira</label>
+                    <input id="carteira" type="text" class="cliente__input cliente__input-dig" formControlName="carteira">
+                  </div>
+              </div>
+  
+              <div class="cliente__form-row">
+                <div class="cliente__form-group">
+                  <label class="cliente__label" for="convenio">Convênio</label>
+                  <select class="cliente__select" (change)="selecionarConvenio($event, i)" formControlName="convenio">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let convenio of convenios" [value]="convenio.codigo">{{ convenio.descricao }}</option>
+                  </select>
+                </div>              
+
+                <div class="cliente__form-group">
+                  <label class="cliente__label" for="empregador">Empregador</label>
+                  <select class="cliente__select" formControlName="empregador">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let empregador of enumEmpregadores" [value]="empregador">{{ empregador }}</option>
+                  </select>
+                </div>
+
+                <div class="cliente__form-group">
+                  <label class="cliente__label" for="orgao">Órgão</label>
+                  <select class="cliente__select" formControlName="orgao">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let orgao of enumOrgaosPublicos" [value]="orgao">{{ orgao }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="cliente__form-row">
+                <div class="cliente__form-group">
+                  <label class="cliente__label" for="localPagamento">Local de Pagamento</label>
+                  <input id="localPagamento" type="text" class="cliente__input cliente__field-cb" formControlName="localPagamento">
+                </div>
+  
+                <div class="cliente__form-group">
+                  <label class="cliente__label" for="fundo">Fundo</label>
+                  <select class="cliente__select" formControlName="fundo">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let orgao of enumOrgaosPublicos" [value]="orgao">{{ orgao }}</option> <!-- TODO -->
+                  </select>
+                </div>
+              </div>
+  
+                <div class="cliente__form-group">
+                  <label class="cliente__label" for="mensagens">Mensagem</label>
+                  <textarea id="mensagens" class="cliente__textarea cliente__field-cb" formControlName="mensagens"></textarea>
+                </div>
+  
+                <div class="cliente__form-row">
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="contaCobranca">
+                      Conta cobrança?
+                      <input id="contaCobranca" type="checkbox" class="cliente__checkbox" formControlName="contaCobranca">
+                    </label>
+                  </div>
+                </div>
+  
+                <div class="cliente__form-row">
+                  <div class="cliente__form-group">
+                    <label class="cliente__label" for="protestar">
+                      Protestar?
+                      <input id="protestar" type="checkbox" class="cliente__checkbox" formControlName="protestar">
+                    </label>
+                  </div>
+                </div>
+                <div class="cliente__form-group">
+                  <label class="cliente__label" for="diasParaProtesto">Dias para Protesto</label>
+                  <input id="diasParaProtesto" type="number" class="cliente__input cliente__input-num cliente__field-num-cb-prot" formControlName="diasParaProtesto">
+                </div>
+        
+                <!-- Botão para remover uma conta -->
+                <button class="cliente__button-rmv" type="button" (click)="removerContaBancaria(i)">Remover Conta</button>
+                <span><br><br></span>
+                <legend class="cliente__label">Conta {{ i+1 }}</legend>
+              </fieldset>
+              <span><br><br></span>
+              </div>
+            </div>
+
+            <!-- Botão para adicionar uma nova conta -->
+            <button class="cliente__button-add" type="button" (click)="addContaBancaria()">Adicionar Conta</button>
+          </fieldset>
+        </div>
+        
+        <ng-template #contentClosedContaBancaria>
+          <span class="cliente__section-closed-text">Expanda para preencher os Dados Bancários...<br><br></span>
+        </ng-template>
+
+
+
+
+
+        <!-- OBSERVAÇÕES -->
+        <fieldset class="cliente__section">
+          <legend class="cliente__legend" (click)="toggleSection('observacoes')">
+            Observações
+            <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['observacoes'], 'up': !isSectionOpen['observacoes'] }">
+              &#9660;
+            </span>
+          </legend>
+        
+          <div *ngIf="isSectionOpen['observacoes']; else contentClosedObservacoes">
+            <div class="cliente__form-group">
+              <label class="cliente__label" for="observacoes">Observações</label>
+              <textarea id="observacoes" class="cliente__textarea" formControlName="observacoes"></textarea>
+            </div>
+          </div>          
+        </fieldset>
+
+        <ng-template #contentClosedObservacoes>
+          <span class="cliente__section-closed-text">Expanda para preencher as Observações...<br><br></span>
+        </ng-template>
+
+
+
+
+        
+        <!-- NEGATIVAÇÃO -->
+        <fieldset class="cliente__section cliente__section--highlight">
+          <legend class="cliente__legend" (click)="toggleSection('negativacao')">
+            Negativação
+            <span class="cliente__icon" [ngClass]="{ 'down': isSectionOpen['negativacao'], 'up': !isSectionOpen['negativacao'] }">
+              &#9660;
+            </span>
+          </legend>
+        
+          <div *ngIf="isSectionOpen['negativacao']; else contentClosedObservacoes">
+            <div formGroupName="negativacao">
+              <div class="cliente__form-row">
+                <div class="cliente__form-group">
+                  <label class="cliente__label">Data de Negativação</label>
+                  <input class="cliente__input" formControlName="dataNegativacao" type="date" />
+                </div>
+                <div class="cliente__form-group">
+                  <label class="cliente__label">Data de Envio Jurídico</label>
+                  <input class="cliente__input" formControlName="dataEnvioJuridico" type="date" />
+                </div>
+              </div>
+              <div class="cliente__form-group">
+                <label class="cliente__label">
+                  Bloqueio?
+                  <input type="checkbox" formControlName="bloqueado" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <ng-template #contentClosedObservacoes>
+          <span class="cliente__section-closed-text">Expanda para preencher as Observações...<br><br></span>
+        </ng-template>
+
+        <button type="submit" class="cliente__button">Salvar</button>
+      </form>
+    </div>
+  </div>
+  

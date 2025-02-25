@@ -1,0 +1,66 @@
+/* Seção que agrupa os cards */
+.home__feature-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+  
+.home__section-title {
+    font-size: 2rem;
+    color: #012852;
+    margin-bottom: 40px;
+}
+  
+/* Contêiner dos cards */
+.home__feature-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+  
+/* Card individual */
+.home__feature-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+  
+/* Título do card */
+.home__feature-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #012852;
+}
+  
+/* Descrição do card */
+.home__feature-card-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+  
+/* Estilo do botão */
+.home__feature-card .home__btn-secondary {
+    padding: 10px 20px;
+    background-color: #FF6F61;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+  
+/* Efeito de hover no botão */
+.home__feature-card .home__btn-secondary:hover {
+    background-color: #e55a4d;
+}
+  
+/* Efeito de hover no card */
+.home__feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
