@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable, of } from 'rxjs';
 export class ConvenioService {
   convenios: any[] = []
     
-  apiUrl: string = 'http://localhost:8080/api/convenio';
+  apiUrl: string = `${environment.apiUrl}/convenio`;
   
   constructor(private http: HttpClient) {}
   

@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EnumsResponse } from '../models/enums-response.model';
-
+import { environment
+  
+ } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  private apiUrl = 'http://localhost:8080/api/cliente';
-  private apiUrlEnums = 'http://localhost:8080/api/enums'
-  private apiUrlBancos = 'http://localhost:8080/api/banco';
-  private apiUrlConvenios = 'http://localhost:8080/api/convenio';
+  private apiUrl = `${environment.apiUrl}/cliente`;
+  private apiUrlEnums = `${environment.apiUrl}/enums`;
+  private apiUrlBancos = `${environment.apiUrl}/banco`;
+  private apiUrlConvenios = `${environment.apiUrl}/convenio`;
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +21,7 @@ export class ClienteService {
     return this.http.get<any[]>(`${this.apiUrl}/simplificado`);
   }
 
-  // Obtém um cliente pelo ID (Agora chama o backend)
+  // Obtém um cliente pelo ID
   getClienteById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
@@ -44,16 +46,18 @@ export class ClienteService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  // Obtém enums
   getEnums(): Observable<EnumsResponse> {
     return this.http.get<EnumsResponse>(`${this.apiUrlEnums}`);
   }
 
+  // Obtém bancos
   getBancos(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrlBancos}`)
+    return this.http.get<any>(`${this.apiUrlBancos}`);
   }
 
+  // Obtém convênios
   getConvenios(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrlConvenios}`)
+    return this.http.get<any>(`${this.apiUrlConvenios}`);
   }
-
 }
