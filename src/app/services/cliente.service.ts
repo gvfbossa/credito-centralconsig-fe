@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { EnumsResponse } from '../models/enums-response.model';
 import { environment
   
- } from '../environments/environment';
+ } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
